@@ -17,11 +17,13 @@ const slides = [
 	}
 ]
 
+var slideIndex = 0;
+
 function initLeftArrow(){
     document.getElementById('banner-left-arrow').addEventListener('click', (e) => {
         if (e.button === 0){
             e.preventDefault()
-            console.log('left arrow');
+            displaySlide(slideIndex - 1);
         }
     })
 }
@@ -30,7 +32,16 @@ function initRightArrow(){
     document.getElementById('banner-right-arrow').addEventListener('click', (e) => {
         if (e.button === 0){
             e.preventDefault()
-            console.log('right arrow');
+            displaySlide(slideIndex + 1);
         }
     })
 }
+
+function displaySlide(index){
+    slideIndex = index;
+    document.getElementById('banner-img').src = './assets/images/slideshow/' + slides[index].image
+    document.getElementById('banner-text').innerHTML = slides[index].tagLine
+}
+
+initLeftArrow();
+initRightArrow();
