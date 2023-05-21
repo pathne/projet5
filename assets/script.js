@@ -23,7 +23,7 @@ function initLeftArrow(){
     document.getElementById('banner-left-arrow').addEventListener('click', (e) => {
         if (e.button === 0){
             e.preventDefault()
-            displaySlide(slideIndex - 1);
+            displaySlide(slideIndex - 1)
         }
     })
 }
@@ -32,7 +32,7 @@ function initRightArrow(){
     document.getElementById('banner-right-arrow').addEventListener('click', (e) => {
         if (e.button === 0){
             e.preventDefault()
-            displaySlide(slideIndex + 1);
+            displaySlide(slideIndex + 1)
         }
     })
 }
@@ -55,7 +55,7 @@ function addBulletPoint(dots, index){
     dot.addEventListener('click', (e) => {
         if (e.button === 0){
             e.preventDefault()
-            console.log('dot', index);
+            displaySlide(index)
         }
     });
     dots.appendChild(dot)
@@ -65,8 +65,16 @@ function displaySlide(index){
     slideIndex = index;
     document.getElementById('banner-img').src = './assets/images/slideshow/' + slides[index].image
     document.getElementById('banner-text').innerHTML = slides[index].tagLine
+    var dots = document.getElementById('dots');
+    for (var i=0; i<slides.length; i++){
+        var className = 'dot';
+        if (i === index){
+            className += ' dot_selected';
+        }
+        dots.children[i].className = className;
+    }
 }
 
-initLeftArrow();
-initRightArrow();
-initBulletPoints();
+initLeftArrow()
+initRightArrow()
+initBulletPoints()
