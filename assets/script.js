@@ -17,13 +17,17 @@ const slides = [
 	}
 ]
 
-var slideIndex = 0;
+let slideIndex = 0;
 
 function initLeftArrow(){
     document.getElementById('banner-left-arrow').addEventListener('click', (e) => {
         if (e.button === 0){
             e.preventDefault()
-            displaySlide(slideIndex - 1)
+            let index = slideIndex - 1
+            if (index < 0){
+                index = slides.length - 1
+            }
+            displaySlide(index)
         }
     })
 }
@@ -32,20 +36,24 @@ function initRightArrow(){
     document.getElementById('banner-right-arrow').addEventListener('click', (e) => {
         if (e.button === 0){
             e.preventDefault()
-            displaySlide(slideIndex + 1)
+            let index = slideIndex + 1
+            if (index === slides.length){
+                index = 0
+            }
+            displaySlide(index)
         }
     })
 }
 
 function initBulletPoints(){
-    var dots = document.getElementById('dots');
-    for (var i=0; i<slides.length; i++){
+    let dots = document.getElementById('dots');
+    for (let i=0; i<slides.length; i++){
         addBulletPoint(dots, i);
     }
 }
 
 function addBulletPoint(dots, index){
-    var dot = document.createElement('div')
+    let dot = document.createElement('div')
     if (index === 0){
         dot.className = 'dot dot_selected'
     }
@@ -65,9 +73,9 @@ function displaySlide(index){
     slideIndex = index;
     document.getElementById('banner-img').src = './assets/images/slideshow/' + slides[index].image
     document.getElementById('banner-text').innerHTML = slides[index].tagLine
-    var dots = document.getElementById('dots');
-    for (var i=0; i<slides.length; i++){
-        var className = 'dot';
+    let dots = document.getElementById('dots');
+    for (let i=0; i<slides.length; i++){
+        let className = 'dot';
         if (i === index){
             className += ' dot_selected';
         }
