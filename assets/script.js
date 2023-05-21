@@ -37,6 +37,30 @@ function initRightArrow(){
     })
 }
 
+function initBulletPoints(){
+    var dots = document.getElementById('dots');
+    for (var i=0; i<slides.length; i++){
+        addBulletPoint(dots, i);
+    }
+}
+
+function addBulletPoint(dots, index){
+    var dot = document.createElement('div')
+    if (index === 0){
+        dot.className = 'dot dot_selected'
+    }
+    else {
+        dot.className = 'dot'
+    }
+    dot.addEventListener('click', (e) => {
+        if (e.button === 0){
+            e.preventDefault()
+            console.log('dot', index);
+        }
+    });
+    dots.appendChild(dot)
+}
+
 function displaySlide(index){
     slideIndex = index;
     document.getElementById('banner-img').src = './assets/images/slideshow/' + slides[index].image
@@ -45,3 +69,4 @@ function displaySlide(index){
 
 initLeftArrow();
 initRightArrow();
+initBulletPoints();
